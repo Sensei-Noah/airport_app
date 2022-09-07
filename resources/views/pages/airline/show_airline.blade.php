@@ -2,6 +2,8 @@
 @section('content')
 <div class="container">
 
+    <a type="button" class="btn btn-success mt-2" href="/add_airline">Add Airline</a>
+
     <table class="table">
         <thead>
         <tr>
@@ -12,16 +14,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>?</td>
-            <td>
-                <a type="button" class="btn btn-primary mt-2" href="/">Edit</a>
-                <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
-            </td>
-        </tr>
+        @foreach ($airline as $airlines)
+            
+            <tr>
+                <th scope="row">{{ $airlines -> id }}</th>
+                <td>{{ $airlines -> airline_name }}</td>
+                <td>{{ $airlines -> country_name }}</td>
+                <td>
+                    <a type="button" class="btn btn-primary mt-2" href="/show_airline/update/{{ $airlines -> id }}">Edit</a>
+                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
+                </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 </div>
@@ -38,7 +42,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <a href="" class="btn btn-danger">Confirm delete</a>
+          <a href="/show_airline/delete/{{ $airlines -> id ?? '' }}" class="btn btn-danger">Confirm delete</a>
         </div>
       </div>
     </div>

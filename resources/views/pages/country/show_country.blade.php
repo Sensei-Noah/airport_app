@@ -2,28 +2,26 @@
 @section('content')
 <div class="container">
 
-    <a type="button" class="btn btn-success mt-2" href="/add_airport">Add Airport</a>
+    <a type="button" class="btn btn-success mt-2" href="/add_country">Add Country</a>
 
     <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Airport Name</th>
-            <th scope="col">Country</th>
-            <th scope="col">Location</th>
+            <th scope="col">Country Name</th>
+            <th scope="col">Country ISO Code</th>
             <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-        @foreach ($airportCon as $airportCons)
+        @foreach ($country as $countries)
             
             <tr>
-                <th scope="row">{{ $airportCons -> id }}</th>
-                <td>{{ $airportCons -> airport_name }}</td>
-                <td>{{ $airportCons -> country_name }}</td>
-                <td>{{ $airportCons -> latitude }} / {{ $airportCons -> longitude }}</td>
+                <th scope="row">{{ $countries -> id }}</th>
+                <td>{{ $countries -> country_name }}</td>
+                <td>{{ $countries -> country_ISO }}</td>
                 <td>
-                    <a type="button" class="btn btn-primary mt-2" href="/show_airport/update/{{ $airportCons -> id }}">Edit</a>
+                    <a type="button" class="btn btn-primary mt-2" href="/show_country/update/{{ $countries -> id }}">Edit</a>
                     <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
                 </td>
             </tr>
@@ -44,7 +42,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <a href="" class="btn btn-danger">Confirm delete</a>
+          <a href="/show_country/delete/{{ $countries -> id ?? '' }}" class="btn btn-danger">Confirm delete</a>
         </div>
       </div>
     </div>

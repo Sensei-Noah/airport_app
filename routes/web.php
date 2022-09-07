@@ -22,17 +22,26 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [AirportConController::class, 'index']);
 
-Route::get('/add_airport', [AirportConController::class,'show_addAirport']);
 Route::get('/show_airport', [AirportConController::class, 'show']);
-Route::get('/show_airline', [AirlineController::class, 'index']);
-Route::get('/show_country', [CountryController::class, 'index']);
+Route::get('/add_airport', [AirportConController::class,'create']);
 Route::get('/show_airport/update/{airportCon}', [AirportConController::class, 'edit']);
+Route::post('show_airport/update/{airportCon}', [AirportConController::class, 'update']);
 Route::get('/show_airport/delete/{airportCon}', [AirportConController::class, 'destroy']);
+Route::post('/store_airport', [AirportConController::class, 'store']);
 
+Route::get('/show_airline', [AirlineController::class, 'show']);
+Route::get('/add_airline', [AirlineController::class,'create']);
+Route::get('/show_airline/update/{airline}', [AirlineController::class, 'edit']);
+Route::post('show_airline/update/{airline}', [AirlineController::class, 'update']);
+Route::get('/show_airline/delete/{airline}', [AirlineController::class, 'destroy']);
+Route::post('store_airline', [AirlineController::class, 'store']);
 
-
-Route::post('/store', [AirportConController::class, 'store']);
-Route::post('update/{airportCon}', [AirportConController::class, 'update']);
+Route::get('/show_country', [CountryController::class, 'show']);
+Route::get('/add_country', [countryController::class,'create']);
+Route::get('/show_country/update/{country}', [countryController::class, 'edit']);
+Route::post('show_country/update/{country}', [countryController::class, 'update']);
+Route::get('/show_country/delete/{country}', [countryController::class, 'destroy']);
+Route::post('store_country', [countryController::class, 'store']);
 
 Auth::routes();
 

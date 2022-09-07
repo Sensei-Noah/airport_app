@@ -15,7 +15,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        return view('pages.show_country');
+        return view('pages.country.show_country');
     }
 
     /**
@@ -25,7 +25,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.country.add_country');
     }
 
     /**
@@ -36,7 +36,16 @@ class CountryController extends Controller
      */
     public function store(StoreCountryRequest $request)
     {
-        //
+        $validate = $request->validate([
+            'country_name' => 'required',
+            'country_ISO' => 'required',
+        ]);
+
+        Country::create([
+            'country_name' =>request('country_name'),
+            'country_ISO' =>request('country_ISO'),
+        ]);
+        return redirect('/');
     }
 
     /**
@@ -47,7 +56,9 @@ class CountryController extends Controller
      */
     public function show(Country $country)
     {
-        //
+        $country = Country::paginate('6');
+
+        return view('pages.country.show_country', compact('country'));
     }
 
     /**
@@ -58,7 +69,10 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        //
+        // if(Gate::denies('edit_country', $country)){
+        //     return view('pages.denies');
+        // }
+        return view('pages.country.edit_country', compact('country'));
     }
 
     /**
@@ -70,7 +84,8 @@ class CountryController extends Controller
      */
     public function update(UpdateCountryRequest $request, Country $country)
     {
-        //
+        Country::where('id', $country->id)->update($request->only(['country_name', 'country_ISO']));
+        return redirect('/show_country');
     }
 
     /**
@@ -81,6 +96,11 @@ class CountryController extends Controller
      */
     public function destroy(Country $country)
     {
-        //
+        // if(Gate::denies('delete_country', $country)){
+        //     return view('pages.denies');
+        // }
+        $country->delete();
+
+        return redirect('/');
     }
 }

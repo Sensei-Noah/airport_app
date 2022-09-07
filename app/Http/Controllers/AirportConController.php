@@ -19,10 +19,6 @@ class AirportConController extends Controller
         return view('main');
     }
 
-    public function show_addAirport(){
-        return view('pages.add_airport');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +26,7 @@ class AirportConController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.airport.add_airport');
     }
 
     /**
@@ -70,7 +66,7 @@ class AirportConController extends Controller
     {
         $airportCon = AirportCon::paginate('6');
 
-        return view('pages.show_airport', compact('airportCon'));
+        return view('pages.airport.show_airport', compact('airportCon'));
     }
 
     /**
@@ -84,7 +80,7 @@ class AirportConController extends Controller
         // if(Gate::denies('edit_airport', $airportCon)){
         //     return view('pages.denies');
         // }
-        return view('pages.edit_airport', compact('airportCon'));
+        return view('pages.airport.edit_airport', compact('airportCon'));
     }
 
     /**
@@ -108,9 +104,9 @@ class AirportConController extends Controller
      */
     public function destroy(AirportCon $airportCon)
     {
-        if(Gate::denies('delete_airport', $airportCon)){
-            return view('pages.denies');
-        }
+        // if(Gate::denies('delete_airport', $airportCon)){
+        //     return view('pages.denies');
+        // }
         $airportCon->delete();
 
         return redirect('/');
