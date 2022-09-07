@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Airline extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['airline_name','country_name'];
 }

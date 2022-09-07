@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AirportCon;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreAirportConRequest;
 use App\Http\Requests\UpdateAirportConRequest;
-use App\Models\AirportCon;
 
 class AirportConController extends Controller
 {
@@ -16,6 +17,10 @@ class AirportConController extends Controller
     public function index()
     {
         return view('main');
+    }
+
+    public function show_addAirport(){
+        return view('pages.add_airport');
     }
 
     /**
@@ -36,7 +41,23 @@ class AirportConController extends Controller
      */
     public function store(StoreAirportConRequest $request)
     {
-        //
+        $validate = $request->validate([
+            'airport_name' => 'required',
+            'country_name' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required', 
+            'airline_name' => 'required',
+
+        ]);
+
+        AirportCon::create([
+            'airport_name' =>request('airport_name'),
+            'country_name' =>request('country_name'),
+            'latitude' =>request('latitude'),
+            'longitude' =>request('longitude'),
+            'airline_name' =>request('airline_name'),
+        ]);
+        return redirect('/');
     }
 
     /**
@@ -47,7 +68,9 @@ class AirportConController extends Controller
      */
     public function show(AirportCon $airportCon)
     {
-        //
+        $airportCon = AirportCon::paginate('6');
+
+        return view('pages.show_airport', compact('airportCon'));
     }
 
     /**
@@ -58,7 +81,10 @@ class AirportConController extends Controller
      */
     public function edit(AirportCon $airportCon)
     {
-        //
+        // if(Gate::denies('edit_airport', $airportCon)){
+        //     return view('pages.denies');
+        // }
+        return view('pages.edit_airport', compact('airportCon'));
     }
 
     /**
@@ -70,7 +96,8 @@ class AirportConController extends Controller
      */
     public function update(UpdateAirportConRequest $request, AirportCon $airportCon)
     {
-        //
+        AirportCon::where('id', $airportCon->id)->update($request->only(['airport_name', 'country_name', 'latitude', 'longitude', 'airline_name']));
+        return redirect('/show_airport');
     }
 
     /**
@@ -81,6 +108,11 @@ class AirportConController extends Controller
      */
     public function destroy(AirportCon $airportCon)
     {
-        //
+        if(Gate::denies('delete_airport', $airportCon)){
+            return view('pages.denies');
+        }
+        $airportCon->delete();
+
+        return redirect('/');
     }
 }

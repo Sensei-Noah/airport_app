@@ -8,7 +8,6 @@
 
         <!-- Fonts -->
         
-
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         {{-- script --}}
@@ -19,23 +18,12 @@
 
 
     <body class="">
-
+      @yield('content')
 
 
         <div class="container bg-danger">
             <h1 class="">Elo</h1>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-              </div>
+
         </div>
 
     </body>

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AirportConController;
+use App\Http\Controllers\AirlineController;
+use App\Http\Controllers\CountryController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,18 @@ use Illuminate\Support\Facades\Auth;
 // });
 
 Route::get('/', [AirportConController::class, 'index']);
+
+Route::get('/add_airport', [AirportConController::class,'show_addAirport']);
+Route::get('/show_airport', [AirportConController::class, 'show']);
+Route::get('/show_airline', [AirlineController::class, 'index']);
+Route::get('/show_country', [CountryController::class, 'index']);
+Route::get('/show_airport/update/{airportCon}', [AirportConController::class, 'edit']);
+Route::get('/show_airport/delete/{airportCon}', [AirportConController::class, 'destroy']);
+
+
+
+Route::post('/store', [AirportConController::class, 'store']);
+Route::post('update/{airportCon}', [AirportConController::class, 'update']);
 
 Auth::routes();
 
