@@ -1,8 +1,15 @@
 @extends('main')
 @section('content')
+@php
+    function initLatLng($airportCons) {
+      $myLatLng = "{$airportCon->latitude} {$airportCon->longitude}" ;
+      echo $myLatLng ;
+    }
+@endphp
+
 <div class="container">
 
-    <a type="button" class="btn btn-success mt-2" href="/add_airport">Add Airport</a>
+    <a type="button" class="btn btn-warning mt-2" href="/add_airport">Add Airport</a>
 
     <table class="table">
         <thead>
@@ -23,6 +30,8 @@
                 <td>{{ $airportCons -> country_name }}</td>
                 <td>{{ $airportCons -> latitude }} / {{ $airportCons -> longitude }}</td>
                 <td>
+                    <button type="submit" class="btn btn-success mt-2" name="airport_show_map" value="{{ $airportCons -> latitude }},{{ $airportCons-> longitude }}">Show Map</button>
+
                     <a type="button" class="btn btn-primary mt-2" href="/show_airport/update/{{ $airportCons -> id }}">Edit</a>
                     <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
                 </td>
