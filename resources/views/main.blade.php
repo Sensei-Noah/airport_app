@@ -9,6 +9,10 @@
         <!-- Fonts -->
         
         <!-- Styles -->
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+        
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         {{-- script --}}
         <script src="{{ asset('js/app.js') }}" defer></script>

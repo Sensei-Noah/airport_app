@@ -1,8 +1,10 @@
 @extends('main')
 @section('content')
-    <h1>Airline</h1>
 
 
+    <div class="container d-flex justify-content-center">
+        <h1 class="mt-3">Add an Airline</h1>
+    </div>
     <div class="container border border-2 bg-dark p-2">
 
         <form action="/store_airline" method="post">

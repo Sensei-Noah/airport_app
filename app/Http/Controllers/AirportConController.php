@@ -42,7 +42,7 @@ class AirportConController extends Controller
             'country_name' => 'required',
             'latitude' => 'required',
             'longitude' => 'required', 
-            'airline_name' => 'required',
+            
 
         ]);
 
@@ -51,7 +51,7 @@ class AirportConController extends Controller
             'country_name' =>request('country_name'),
             'latitude' =>request('latitude'),
             'longitude' =>request('longitude'),
-            'airline_name' =>request('airline_name'),
+            
         ]);
         return redirect('/');
     }
@@ -92,7 +92,7 @@ class AirportConController extends Controller
      */
     public function update(UpdateAirportConRequest $request, AirportCon $airportCon)
     {
-        AirportCon::where('id', $airportCon->id)->update($request->only(['airport_name', 'country_name', 'latitude', 'longitude', 'airline_name']));
+        AirportCon::where('id', $airportCon->id)->update($request->only(['airport_name', 'country_name', 'latitude', 'longitude']));
         return redirect('/show_airport');
     }
 

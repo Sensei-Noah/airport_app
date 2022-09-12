@@ -19,7 +19,6 @@ class CreateAirportConsTable extends Migration
             $table->string('country_name');
             $table->decimal('latitude', 15, 10);
             $table->decimal('longitude', 15, 10);
-            $table->string('airline_name');
             $table->timestamps();
         });
     }

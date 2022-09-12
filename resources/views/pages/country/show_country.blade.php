@@ -2,7 +2,9 @@
 @section('content')
 <div class="container">
 
-    <a type="button" class="btn btn-warning mt-2" href="/add_country">Add Country</a>
+    <div class="container d-flex justify-content-center">
+      <a type="button" class="btn btn-warning mt-2" href="/add_country">Add Country</a>
+    </div>
 
     <table class="table">
         <thead>
