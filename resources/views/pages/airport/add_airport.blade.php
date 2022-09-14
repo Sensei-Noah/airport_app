@@ -43,7 +43,7 @@
         <script>
             const latitude = document.getElementById('latitude');
             const longitude = document.getElementById('longitude');
-            mapboxgl.accessToken ='pk.eyJ1IjoidGl0YXNueGx0IiwiYSI6ImNqZWs3ZHliejBjOWMzM284aG1nbG1yN3IifQ._nFPiSI4HSaZriIEDwRa8g'; //TODO: put in my own token
+            mapboxgl.accessToken ='{{ env('MAPBOX_API_TOKEN') }}';
 
             let map = new mapboxgl.Map({
                 container: 'map',
