@@ -19,14 +19,18 @@
                 <span class="input-group-text" id="inputGroup-sizing-default">Country</span>
                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_name" value="{{ $airportCon -> country_name }}">
             </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Country ISO</span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_ISO" value="{{ $airportCon -> country_ISO }}">
+            </div>
             <div class="mb-3">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">location Latitude</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="latitude" id="latitude">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="latitude" id="latitude" value="{{ $airportCon -> latitude }}">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">location Longitude</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="longitude" id="longitude">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="longitude" id="longitude" value="{{ $airportCon-> longitude }}">
                 </div>
                 <div id="map" style="width: 100%; height: 500px;"></div>
             </div>
@@ -48,7 +52,7 @@
                 doubleClickZoom: false
             });
 
-            
+
             map.addControl(
                 new MapboxGeocoder({
                 accessToken: mapboxgl.accessToken,

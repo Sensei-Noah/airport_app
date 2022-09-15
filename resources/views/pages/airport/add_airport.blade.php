@@ -2,12 +2,12 @@
 @section('content')
 
 
-        
+
     <div class="container d-flex justify-content-center">
         <h1 class="mt-3">Add an Airport</h1>
     </div>
     <div class="container border border-2 bg-dark p-2">
-            
+
         <form action="/store_airport" method="post">
 
         @csrf
@@ -19,6 +19,10 @@
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Country</span>
                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_name">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Country ISO</span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_ISO">
             </div>
             <div class="mb-3">
                 <div class="input-group mb-3">
@@ -51,7 +55,6 @@
                 doubleClickZoom: false
             });
 
-            
             map.addControl(
                 new MapboxGeocoder({
                 accessToken: mapboxgl.accessToken,

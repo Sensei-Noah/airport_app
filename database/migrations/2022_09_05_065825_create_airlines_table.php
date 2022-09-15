@@ -17,6 +17,7 @@ class CreateAirlinesTable extends Migration
             $table->id();
             $table->string('airline_name');
             $table->string('country_name');
+            $table->integer('country_ISO');
             $table->timestamps();
         });
     }

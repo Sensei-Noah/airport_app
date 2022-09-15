@@ -17,6 +17,7 @@ class CreateAirportConsTable extends Migration
             $table->id();
             $table->string('airport_name');
             $table->string('country_name');
+            $table->integer('country_ISO');
             $table->decimal('latitude', 15, 10);
             $table->decimal('longitude', 15, 10);
             $table->timestamps();

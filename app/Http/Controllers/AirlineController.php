@@ -16,7 +16,7 @@ class AirlineController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -40,11 +40,13 @@ class AirlineController extends Controller
         $validate = $request->validate([
             'airline_name' => 'required',
             'country_name' => 'required',
+            'country_ISO' => 'required',
         ]);
 
         Airline::create([
             'airline_name' =>request('airline_name'),
             'country_name' =>request('country_name'),
+            'country_ISO' =>request('country_ISO'),
         ]);
         return redirect('/');
     }
@@ -85,7 +87,7 @@ class AirlineController extends Controller
      */
     public function update(UpdateAirlineRequest $request, Airline $airline)
     {
-        Airline::where('id', $airline->id)->update($request->only(['airline_name', 'country_name']));
+        Airline::where('id', $airline->id)->update($request->only(['airline_name', 'country_name', 'country_ISO']));
         return redirect('/show_airline');
     }
 

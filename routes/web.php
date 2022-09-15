@@ -43,6 +43,10 @@ Route::post('show_country/update/{country}', [countryController::class, 'update'
 Route::get('/show_country/delete/{country}', [countryController::class, 'destroy']);
 Route::post('store_country', [countryController::class, 'store']);
 
+Route::get('/show_countryNoAirline', [countryController::class, 'countryNoAirport']);
+Route::get('/show_countryNoAirlineNoAirport', [countryController::class, 'countryNoAirportNoAirport']);
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -17,7 +17,7 @@
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Country Code</span>
-                <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_ISO">
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_ISO">
             </div>
             <div class="input-group mb-2">
                 <button type="submit" class="btn btn-primary">Save</button>

@@ -40,18 +40,20 @@ class AirportConController extends Controller
         $validate = $request->validate([
             'airport_name' => 'required',
             'country_name' => 'required',
+            'country_ISO' => 'required',
             'latitude' => 'required',
-            'longitude' => 'required', 
-            
+            'longitude' => 'required',
+
 
         ]);
 
         AirportCon::create([
             'airport_name' =>request('airport_name'),
             'country_name' =>request('country_name'),
+            'country_ISO' =>request('country_ISO'),
             'latitude' =>request('latitude'),
             'longitude' =>request('longitude'),
-            
+
         ]);
         return redirect('/');
     }
@@ -92,7 +94,7 @@ class AirportConController extends Controller
      */
     public function update(UpdateAirportConRequest $request, AirportCon $airportCon)
     {
-        AirportCon::where('id', $airportCon->id)->update($request->only(['airport_name', 'country_name', 'latitude', 'longitude']));
+        AirportCon::where('id', $airportCon->id)->update($request->only(['airport_name', 'country_name', 'country_ISO', 'latitude', 'longitude']));
         return redirect('/show_airport');
     }
 

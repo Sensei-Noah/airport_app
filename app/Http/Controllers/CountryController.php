@@ -15,9 +15,22 @@ class CountryController extends Controller
      */
     public function index()
     {
-        return view('pages.country.show_country');
+
     }
 
+    public function countryNoAirport(){
+
+        $country = Country::paginate('6');
+
+        return view('pages.country.show_countryNoAirline', compact('country'));
+    }
+
+    public function countryNoAirportNoAirport(){
+
+        $country = Country::paginate('6');
+
+        return view('pages.country.show_countryNoAirlineNoAirport', compact('country'));
+    }
     /**
      * Show the form for creating a new resource.
      *

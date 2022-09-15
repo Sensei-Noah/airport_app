@@ -16,24 +16,27 @@
             <th scope="col">Country Name</th>
             <th scope="col">Country ISO Code</th>
             <th scope="col">Airline name</th>
-            <th scope="col">Airport name</th>
             <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
         @foreach ($country as $countries)
 
-            <tr>
-                <th scope="row">{{ $countries -> id }}</th>
-                <td>{{ $countries -> country_name }}</td>
-                <td>{{ $countries -> country_ISO }}</td>
-                <td>{{ $countries-> airline -> implode('airline_name', ', ') }}</td>
-                <td>{{ $countries-> airportCon -> implode('airport_name', ', ') }}</td>
-                <td>
-                    <a type="button" class="btn btn-primary mt-2" href="/show_country/update/{{ $countries -> id }}">Edit</a>
-                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
-                </td>
-            </tr>
+            @if (count($countries-> airline) == 0 )
+                <tr>
+                    <th scope="row">{{ $countries -> id }}</th>
+                    <td>{{ $countries -> country_name }}</td>
+                    <td>{{ $countries -> country_ISO }}</td>
+
+                    <td>{{ $countries-> airline -> implode('airline_name', ', ') }}</td>
+
+                    <td>
+                        <a type="button" class="btn btn-primary mt-2" href="/show_country/update/{{ $countries -> id }}">Edit</a>
+                        <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
+                    </td>
+                </tr>
+            @endif
+
         @endforeach
         </tbody>
     </table>

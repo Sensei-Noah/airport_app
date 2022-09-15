@@ -9,5 +9,5 @@ class AirportCon extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['airport_name', 'country_name', 'latitude', 'longitude'];
+    protected $fillable = ['airport_name', 'country_name', 'country_ISO', 'latitude', 'longitude'];
 }

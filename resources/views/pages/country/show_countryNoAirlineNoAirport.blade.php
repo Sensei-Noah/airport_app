@@ -23,6 +23,9 @@
         <tbody>
         @foreach ($country as $countries)
 
+
+            @if (count($countries-> airline) == 0 && count($countries-> airportCon) == 0)
+
             <tr>
                 <th scope="row">{{ $countries -> id }}</th>
                 <td>{{ $countries -> country_name }}</td>
@@ -34,6 +37,7 @@
                     <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
                 </td>
             </tr>
+            @endif
         @endforeach
         </tbody>
     </table>
