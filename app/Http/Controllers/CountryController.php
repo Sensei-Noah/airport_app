@@ -15,7 +15,12 @@ class CountryController extends Controller
      */
     public function index()
     {
+        // $country = Country::query();
+        // if(request(country)){
+        //     $country->where('country_name', 'Like', '%'. request('country') . '%' );
+        // }
 
+        // return $country->orderBy('id', 'DESC')->paginate(10);
     }
 
     public function countryNoAirport(){

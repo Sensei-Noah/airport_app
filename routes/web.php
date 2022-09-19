@@ -43,6 +43,8 @@ Route::post('show_country/update/{country}', [countryController::class, 'update'
 Route::get('/show_country/delete/{country}', [countryController::class, 'destroy']);
 Route::post('store_country', [countryController::class, 'store']);
 
+Route::get('/show_airport/search', [AirportConController::class, 'search']);
+
 Route::get('/show_countryNoAirline', [countryController::class, 'countryNoAirport']);
 Route::get('/show_countryNoAirlineNoAirport', [countryController::class, 'countryNoAirportNoAirport']);
 

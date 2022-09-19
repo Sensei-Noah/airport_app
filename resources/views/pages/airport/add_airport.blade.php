@@ -33,6 +33,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">location Longitude</span>
                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="longitude" id="longitude">
                 </div>
+                
                 <div id="map" style="width: 100%; height: 500px;"></div>
             </div>
 
@@ -47,7 +48,7 @@
         <script>
             const latitude = document.getElementById('latitude');
             const longitude = document.getElementById('longitude');
-            mapboxgl.accessToken ='{{ env('MAPBOX_API_TOKEN') }}';
+            mapboxgl.accessToken ='{{ env('MAPBOX_API_KEY') }}';
 
             let map = new mapboxgl.Map({
                 container: 'map',

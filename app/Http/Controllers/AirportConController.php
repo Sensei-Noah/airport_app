@@ -16,9 +16,19 @@ class AirportConController extends Controller
      */
     public function index()
     {
-        return view('main');
+        return redirect('show_airport');
     }
 
+    public function search(AirportCon $airportCon) {
+        $airportCon = AirportCon::query();
+        if(request('country')){
+            $airportCon->where('id', 'Like', '%'. request('country') . '%' )->get();
+        }else {
+            $airportCon = AirportCon::All();
+        }
+
+        return view('pages.airport.show_airport')->with('airportCon', $airportCon);
+    }
     /**
      * Show the form for creating a new resource.
      *
