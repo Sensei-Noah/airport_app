@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AirportCon;
+use App\Models\Country;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreAirportConRequest;
 use App\Http\Requests\UpdateAirportConRequest;
@@ -19,15 +20,14 @@ class AirportConController extends Controller
         return redirect('show_airport');
     }
 
-    public function search(AirportCon $airportCon) {
-        $airportCon = AirportCon::query();
-        if(request('country')){
-            $airportCon->where('id', 'Like', '%'. request('country') . '%' )->get();
-        }else {
-            $airportCon = AirportCon::All();
-        }
+    public function search(Country $request) {
+        //$country = Country::All();
+        $airportCon = AirportCon::paginate('6');
+        // if(request('country')){
+        // }
+        $country = Country::where('country_name', 'Like', '%'. request('country') . '%' )->get();
 
-        return view('pages.airport.show_airport')->with('airportCon', $airportCon);
+        return view('pages.airport.search_airport', compact('country', $country, 'airportCon', $airportCon));//->with();
     }
     /**
      * Show the form for creating a new resource.
@@ -76,9 +76,10 @@ class AirportConController extends Controller
      */
     public function show(AirportCon $airportCon)
     {
+        $country = Country::paginate('6');
         $airportCon = AirportCon::paginate('6');
 
-        return view('pages.airport.show_airport', compact('airportCon'));
+        return view('pages.airport.show_airport', compact('airportCon', 'country'));
     }
 
     /**

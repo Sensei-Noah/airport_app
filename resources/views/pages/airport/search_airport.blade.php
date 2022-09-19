@@ -1,11 +1,5 @@
 @extends('main')
 @section('content')
-@php
-    function initLatLng($airportCons) {
-      $myLatLng = "{$airportCon->latitude} {$airportCon->longitude}" ;
-      echo $myLatLng ;
-    }
-@endphp
 
 <div class="container">
 
@@ -13,18 +7,22 @@
       <a type="button" class="btn btn-warning mt-2" href="/add_airport">Add Airport</a>
     </div>
 
-    <form action="/show_airport/search" method="GET">
+    <div class="container d-flex justify-content-center">
+        <a type="button" class="btn btn-primary mt-2 btn-lg" href="/show_airport">Go back</a>
+    </div>
+
+    {{-- <form action="/show_airport/search" method="GET">
         <div class="container mt-3">
             <select id="country" class="form-select" aria-label="Default select example" name="country">
                 <option selected>Open this select menu</option>
-                @foreach ($airportCon as $airportCons)
+                @foreach ($country as $countries)
 
-                <option value="{{ $airportCons-> id }}">{{ $airportCons -> country_name }}</option>
+                <option value="{{ $countries-> id }}">{{ $countries -> country_name }}</option>
                 @endforeach
             </select>
             <button class="btn btn-success " type="submit" >Search</button>
         </div>
-    </form>
+    </form> --}}
 
     <table class="table">
         <thead>
@@ -37,21 +35,27 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($airportCon as $airportCons)
+            @foreach ($country as $countries)
 
-            <tr>
-                <th scope="row">{{ $airportCons -> id }}</th>
-                <td>{{ $airportCons -> airport_name }}</td>
-                <td>{{ $airportCons -> country_name }}</td>
-                <td>{{ $airportCons -> latitude }} / {{ $airportCons -> longitude }}</td>
-                <td>
-                    <button type="submit" class="btn btn-success mt-2" name="airport_show_map" value="{{ $airportCons -> latitude }},{{ $airportCons-> longitude }}">Show Map</button>
 
-                    <a type="button" class="btn btn-primary mt-2" href="/show_airport/update/{{ $airportCons -> id }}">Edit</a>
-                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
-                </td>
-            </tr>
-        @endforeach
+            @foreach ($airportCon as $airportCons)
+                        @if ($countries-> country_name == $airportCons-> country_name)
+
+                            <tr>
+                                <th scope="row">{{ $airportCons -> id }}</th>
+                                <td>{{ $airportCons -> airport_name }}</td>
+                                <td>{{ $airportCons -> country_name }}</td>
+                                <td>{{ $airportCons -> latitude }} / {{ $airportCons -> longitude }}</td>
+                                <td>
+                                    <button type="submit" class="btn btn-success mt-2" name="airport_show_map" value="{{ $airportCons -> latitude }},{{ $airportCons-> longitude }}">Show Map</button>
+
+                                    <a type="button" class="btn btn-primary mt-2" href="/show_airport/update/{{ $airportCons -> id }}">Edit</a>
+                                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+            @endforeach
         </tbody>
     </table>
 </div>

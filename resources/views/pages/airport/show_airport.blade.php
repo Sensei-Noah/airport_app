@@ -1,11 +1,5 @@
 @extends('main')
 @section('content')
-@php
-    function initLatLng($airportCons) {
-      $myLatLng = "{$airportCon->latitude} {$airportCon->longitude}" ;
-      echo $myLatLng ;
-    }
-@endphp
 
 <div class="container">
 
@@ -16,13 +10,15 @@
     <form action="/show_airport/search" method="GET">
         <div class="container mt-3">
             <select id="country" class="form-select" aria-label="Default select example" name="country">
-                <option selected>Open this select menu</option>
-                @foreach ($airportCon as $airportCons)
-
-                <option value="{{ $airportCons-> id }}">{{ $airportCons -> country_name }}</option>
+                <option selected value="">Open this select menu</option>
+                @foreach ($country as $countries)
+                    <option value="{{ $countries-> country_name }}">{{ $countries -> country_name }}</option>
                 @endforeach
             </select>
-            <button class="btn btn-success " type="submit" >Search</button>
+
+            <div class="container d-flex justify-content-center">
+                <button class="btn btn-info btn-lg mt-3" type="submit" >Search</button>
+            </div>
         </div>
     </form>
 
