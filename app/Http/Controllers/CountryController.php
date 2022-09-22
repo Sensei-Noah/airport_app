@@ -8,6 +8,10 @@ use App\Models\Country;
 
 class CountryController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth', ['except'=>['index', 'show', 'countryNoAirportNoAirport', 'countryNoAirport']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -55,8 +59,8 @@ class CountryController extends Controller
     public function store(StoreCountryRequest $request)
     {
         $validate = $request->validate([
-            'country_name' => 'required',
-            'country_ISO' => 'required',
+            'country_name' => 'required|unique:countries',
+            'country_ISO' => 'required|unique:countries',
         ]);
 
         Country::create([
@@ -87,9 +91,9 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        // if(Gate::denies('edit_country', $country)){
-        //     return view('pages.denies');
-        // }
+        if(Gate::denies('edit_country', $country)){
+            return view('pages.denies');
+        }
         return view('pages.country.edit_country', compact('country'));
     }
 
@@ -114,9 +118,9 @@ class CountryController extends Controller
      */
     public function destroy(Country $country)
     {
-        // if(Gate::denies('delete_country', $country)){
-        //     return view('pages.denies');
-        // }
+        if(Gate::denies('delete_country', $country)){
+            return view('pages.denies');
+        }
         $country->delete();
 
         return redirect('/show_country');

@@ -7,7 +7,7 @@
 
     </div>
 
-    <table class="table">
+    <table class="table table-dark table-striped mt-3">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -18,7 +18,7 @@
         </thead>
         <tbody>
         @foreach ($airline as $airlines)
-            
+
             <tr>
                 <th scope="row">{{ $airlines -> id }}</th>
                 <td>{{ $airlines -> airline_name }}</td>

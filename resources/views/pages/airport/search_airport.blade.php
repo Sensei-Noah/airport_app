@@ -24,7 +24,7 @@
         </div>
     </form> --}}
 
-    <table class="table">
+    <table class="table table-dark table-striped mt-3">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -39,7 +39,7 @@
 
 
             @foreach ($airportCon as $airportCons)
-                        @if ($countries-> country_name == $airportCons-> country_name)
+                        @if ($countries-> id == $airportCons-> country_id)
 
                             <tr>
                                 <th scope="row">{{ $airportCons -> id }}</th>
@@ -47,7 +47,7 @@
                                 <td>{{ $airportCons -> country_name }}</td>
                                 <td>{{ $airportCons -> latitude }} / {{ $airportCons -> longitude }}</td>
                                 <td>
-                                    <button type="submit" class="btn btn-success mt-2" name="airport_show_map" value="{{ $airportCons -> latitude }},{{ $airportCons-> longitude }}">Show Map</button>
+                                    {{-- <button type="submit" class="btn btn-success mt-2" name="airport_show_map" value="{{ $airportCons -> latitude }},{{ $airportCons-> longitude }}">Show Map</button> --}}
 
                                     <a type="button" class="btn btn-primary mt-2" href="/show_airport/update/{{ $airportCons -> id }}">Edit</a>
                                     <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>

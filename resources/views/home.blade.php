@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('main')
 
 @section('content')
 <div class="container">
@@ -16,6 +16,11 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+
+                <div class="container d-flex">
+                    <a type="button" class="btn btn-primary mt-2" href="/">Home</a>
+                </div>
+
             </div>
         </div>
     </div>

@@ -4,12 +4,12 @@
 
     <div class="container d-flex justify-content-center">
       <a type="button" class="btn btn-warning mt-2 me-2" href="/add_country">Add Country</a>
-      <a type="button" class="btn btn-warning mt-2 me-2" href="/show_countryNoAirline">Countries without airlines</a>
-      <a type="button" class="btn btn-warning mt-2 me-2" href="/show_countryNoAirlineNoAirport">Countries without airlines and airports</a>
+      <a type="button" class="btn btn-secondary mt-2 me-2" href="/show_countryNoAirline">Countries without airlines</a>
+      <a type="button" class="btn btn-secondary mt-2 me-2" href="/show_countryNoAirlineNoAirport">Countries without airlines and airports</a>
 
     </div>
 
-    <table class="table">
+    <table class="table table-dark table-striped mt-3">
         <thead>
         <tr>
             <th scope="col">#</th>

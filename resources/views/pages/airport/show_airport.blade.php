@@ -10,9 +10,9 @@
     <form action="/show_airport/search" method="GET">
         <div class="container mt-3">
             <select id="country" class="form-select" aria-label="Default select example" name="country">
-                <option selected value="">Open this select menu</option>
+                <option selected value="" disabled>Country Selection</option>
                 @foreach ($country as $countries)
-                    <option value="{{ $countries-> country_name }}">{{ $countries -> country_name }}</option>
+                    <option value="{{ $countries-> id }}">{{ $countries -> country_name }}</option>
                 @endforeach
             </select>
 
@@ -22,7 +22,7 @@
         </div>
     </form>
 
-    <table class="table">
+    <table class="table table-dark table-striped mt-3">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -41,7 +41,7 @@
                 <td>{{ $airportCons -> country_name }}</td>
                 <td>{{ $airportCons -> latitude }} / {{ $airportCons -> longitude }}</td>
                 <td>
-                    <button type="submit" class="btn btn-success mt-2" name="airport_show_map" value="{{ $airportCons -> latitude }},{{ $airportCons-> longitude }}">Show Map</button>
+                    {{-- <button type="submit" class="btn btn-success mt-2" name="airport_show_map" value="{{ $airportCons -> latitude }},{{ $airportCons-> longitude }}">Show Map</button> --}}
 
                     <a type="button" class="btn btn-primary mt-2" href="/show_airport/update/{{ $airportCons -> id }}">Edit</a>
                     <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>

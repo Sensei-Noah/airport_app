@@ -12,10 +12,10 @@ class Country extends Model
     protected $fillable = ['country_name', 'country_ISO'];
 
     public function AirportCon(){
-        return $this->hasMany(AirportCon::class, 'country_ISO', 'country_ISO');
+        return $this->hasMany(AirportCon::class, 'country_id', 'id');
     }
 
     public function Airline(){
-        return $this->hasMany(Airline::class, 'country_ISO', 'country_ISO');
+        return $this->hasMany(Airline::class, 'country_id', 'id');
     }
 }

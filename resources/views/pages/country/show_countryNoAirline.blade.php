@@ -4,12 +4,12 @@
 
     <div class="container d-flex justify-content-center">
       <a type="button" class="btn btn-warning mt-2 me-2" href="/add_country">Add Country</a>
-      <a type="button" class="btn btn-warning mt-2 me-2" href="/show_countryNoAirline">Countries without airlines</a>
-      <a type="button" class="btn btn-warning mt-2 me-2" href="/show_countryNoAirlineNoAirport">Countries without airlines and airports</a>
+      <a type="button" class="btn btn-secondary mt-2 me-2" href="/show_countryNoAirline">Countries without airlines</a>
+      <a type="button" class="btn btn-secondary mt-2 me-2" href="/show_countryNoAirlineNoAirport">Countries without airlines and airports</a>
 
     </div>
 
-    <table class="table">
+    <table class="table table-dark table-striped mt-3">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -31,6 +31,7 @@
                     <td>{{ $countries-> airline -> implode('airline_name', ', ') }}</td>
 
                     <td>
+                        <a type="button" class="btn btn-warning mt-2" href="/add_airline">Add Airline</a>
                         <a type="button" class="btn btn-primary mt-2" href="/show_country/update/{{ $countries -> id }}">Edit</a>
                         <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
                     </td>

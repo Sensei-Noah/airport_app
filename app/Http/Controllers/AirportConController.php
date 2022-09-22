@@ -10,6 +10,9 @@ use App\Http\Requests\UpdateAirportConRequest;
 
 class AirportConController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth', ['except'=>['index', 'search', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +28,7 @@ class AirportConController extends Controller
         $airportCon = AirportCon::paginate('6');
         // if(request('country')){
         // }
-        $country = Country::where('country_name', 'Like', '%'. request('country') . '%' )->get();
+        $country = Country::where('id', 'Like', '%'. request('country') . '%' )->get();
 
         return view('pages.airport.search_airport', compact('country', 'airportCon'));//->with();
     }
@@ -54,6 +57,7 @@ class AirportConController extends Controller
             'country_ISO' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
+            'country_id' => 'required',
 
 
         ]);
@@ -64,6 +68,7 @@ class AirportConController extends Controller
             'country_ISO' =>request('country_ISO'),
             'latitude' =>request('latitude'),
             'longitude' =>request('longitude'),
+            'country_id' =>request('country_id'),
 
         ]);
         return redirect('/');
@@ -91,10 +96,11 @@ class AirportConController extends Controller
      */
     public function edit(AirportCon $airportCon)
     {
+        $country = Country::All();
         // if(Gate::denies('edit_airport', $airportCon)){
         //     return view('pages.denies');
         // }
-        return view('pages.airport.edit_airport', compact('airportCon'));
+        return view('pages.airport.edit_airport', compact('airportCon', 'country'));
     }
 
     /**
@@ -106,7 +112,7 @@ class AirportConController extends Controller
      */
     public function update(UpdateAirportConRequest $request, AirportCon $airportCon)
     {
-        AirportCon::where('id', $airportCon->id)->update($request->only(['airport_name', 'country_name', 'country_ISO', 'latitude', 'longitude']));
+        AirportCon::where('id', $airportCon->id)->update($request->only(['airport_name', 'country_name', 'country_ISO', 'latitude', 'longitude', 'country_id']));
         return redirect('/show_airport');
     }
 

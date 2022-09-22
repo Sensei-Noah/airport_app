@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AirportConController;
 use App\Http\Controllers\AirlineController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\SignupController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +52,5 @@ Route::get('/show_countryNoAirlineNoAirport', [countryController::class, 'countr
 
 Auth::routes();
 
+Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
