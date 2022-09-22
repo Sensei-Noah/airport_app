@@ -16,9 +16,17 @@
                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="airline_name">
             </div>
             <div class="input-group mb-3">
+                <select id="country" class="form-select" aria-label="Default select example" name="country_name">
+                    <option selected value="">Open this select menu</option>
+                    @foreach ($country as $countries)
+                        <option value="{{ $countries-> country_name }}">{{ $countries -> country_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            {{-- <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Country</span>
                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_name">
-            </div>
+            </div> --}}
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Country ISO</span>
                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_ISO">

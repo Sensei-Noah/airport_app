@@ -8,7 +8,7 @@
     </div>
 
     <div class="container d-flex justify-content-center">
-        <a type="button" class="btn btn-primary mt-2 btn-lg" href="/show_airport">Go back</a>
+        <a type="button" class="btn btn-info mt-2 btn-lg" href="/show_airport">Go back</a>
     </div>
 
     {{-- <form action="/show_airport/search" method="GET">

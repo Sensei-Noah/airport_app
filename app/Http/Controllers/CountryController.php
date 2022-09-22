@@ -63,7 +63,7 @@ class CountryController extends Controller
             'country_name' =>request('country_name'),
             'country_ISO' =>request('country_ISO'),
         ]);
-        return redirect('/');
+        return redirect('/show_country');
     }
 
     /**
@@ -119,6 +119,6 @@ class CountryController extends Controller
         // }
         $country->delete();
 
-        return redirect('/');
+        return redirect('/show_country');
     }
 }

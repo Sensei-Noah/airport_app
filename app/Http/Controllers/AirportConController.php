@@ -27,7 +27,7 @@ class AirportConController extends Controller
         // }
         $country = Country::where('country_name', 'Like', '%'. request('country') . '%' )->get();
 
-        return view('pages.airport.search_airport', compact('country', $country, 'airportCon', $airportCon));//->with();
+        return view('pages.airport.search_airport', compact('country', 'airportCon'));//->with();
     }
     /**
      * Show the form for creating a new resource.
@@ -36,7 +36,8 @@ class AirportConController extends Controller
      */
     public function create()
     {
-        return view('pages.airport.add_airport');
+        $country = Country::All();
+        return view('pages.airport.add_airport', compact('country'));
     }
 
     /**

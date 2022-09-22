@@ -48,7 +48,7 @@ class AirlineController extends Controller
             'country_name' =>request('country_name'),
             'country_ISO' =>request('country_ISO'),
         ]);
-        return redirect('/');
+        return redirect('/show_airline');
     }
 
     /**
@@ -104,6 +104,6 @@ class AirlineController extends Controller
         // }
         $airline->delete();
 
-        return redirect('/');
+        return redirect('/show_airline');
     }
 }
