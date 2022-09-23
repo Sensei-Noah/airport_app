@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCountryRequest;
 use App\Http\Requests\UpdateCountryRequest;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Country;
 
 class CountryController extends Controller
@@ -91,9 +92,9 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        if(Gate::denies('edit_country', $country)){
-            return view('pages.denies');
-        }
+        // if(Gate::denies('edit_country', $country)){
+        //     return view('pages.denies');
+        // }
         return view('pages.country.edit_country', compact('country'));
     }
 
@@ -118,9 +119,9 @@ class CountryController extends Controller
      */
     public function destroy(Country $country)
     {
-        if(Gate::denies('delete_country', $country)){
-            return view('pages.denies');
-        }
+        // if(Gate::denies('delete_country', $country)){
+        //     return view('pages.denies');
+        // }
         $country->delete();
 
         return redirect('/show_country');

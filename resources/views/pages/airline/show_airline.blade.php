@@ -24,8 +24,13 @@
                 <td>{{ $airlines -> airline_name }}</td>
                 <td>{{ $airlines -> country_name }}</td>
                 <td>
-                    <a type="button" class="btn btn-primary mt-2" href="/show_airline/update/{{ $airlines -> id }}">Edit</a>
-                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
+                    @if (Auth::check())
+                        <a type="button" class="btn btn-primary mt-2" href="/show_airline/update/{{ $airlines -> id }}">Edit</a>
+                        <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
+
+                    @else
+                        <a type="button" class="btn btn-primary mt-2" href="/login">Login</a>
+                    @endif
                 </td>
             </tr>
         @endforeach

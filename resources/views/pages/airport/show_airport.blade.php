@@ -42,9 +42,13 @@
                 <td>{{ $airportCons -> latitude }} / {{ $airportCons -> longitude }}</td>
                 <td>
                     {{-- <button type="submit" class="btn btn-success mt-2" name="airport_show_map" value="{{ $airportCons -> latitude }},{{ $airportCons-> longitude }}">Show Map</button> --}}
+                    @if (Auth::check())
+                        <a type="button" class="btn btn-primary mt-2" href="/show_airport/update/{{ $airportCons -> id }}">Edit</a>
+                        <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
 
-                    <a type="button" class="btn btn-primary mt-2" href="/show_airport/update/{{ $airportCons -> id }}">Edit</a>
-                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteConformation">Delete</button>
+                    @else
+                        <a type="button" class="btn btn-primary mt-2" href="/login">Login</a>
+                    @endif
                 </td>
             </tr>
         @endforeach

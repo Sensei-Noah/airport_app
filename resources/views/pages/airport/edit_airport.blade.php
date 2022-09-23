@@ -58,7 +58,9 @@
         let map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
-            doubleClickZoom: false
+            doubleClickZoom: false,
+            center: [`${longitude.value}`, `${latitude.value}`],
+            zoom: 7,
         });
 
 
@@ -70,7 +72,7 @@
         );
 
         let marker = new mapboxgl.Marker()
-        .setLngLat([30.5, 50.5])
+        .setLngLat([`${longitude.value}`, `${latitude.value}`])
         .addTo(map);
 
         map.on('dblclick', (e) => {

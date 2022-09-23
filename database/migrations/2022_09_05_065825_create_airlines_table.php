@@ -18,9 +18,8 @@ class CreateAirlinesTable extends Migration
             $table->unsignedBigInteger('country_id');
             $table->string('airline_name');
             $table->string('country_name');
-            $table->integer('country_ISO');
+            $table->string('country_ISO');
             $table->timestamps();
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
         });
     }
 

@@ -24,13 +24,26 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block text-light fs-5">
                     @auth
-                        <a href="{{ url('/logout') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Logout</a>
+                        <div class="d-flex ">
+                            <p class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Welcome, {{ Auth()-> user() -> name }}</p>
+                            <div class="m-2"> </div>
+                            <a href="{{ url('/logout') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Logout</a>
+                        </div>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Log in</a>
-                        /{{-- seperator --}}
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Register</a>
-                        @endif
+                        <div class="d-flex">
+
+                            <p class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Welcome, Guest</p>
+                            <div class="m-2"> </div>
+                            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Log in</a>
+                            
+                            <div class="m-2"> </div>
+                            /{{-- seperator --}}
+                            <div class="m-2"> </div>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Register</a>
+                            @endif
+                        </div>
                     @endauth
                 </div>
             @endif
