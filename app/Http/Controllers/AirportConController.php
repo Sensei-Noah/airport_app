@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\AirportCon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreAirportConRequest;
 use App\Http\Requests\UpdateAirportConRequest;
@@ -12,7 +13,7 @@ use App\Http\Requests\UpdateAirportConRequest;
 class AirportConController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth', ['except'=>['index', 'search', 'show']]);
+        $this->middleware('auth', ['except'=>['index', 'search', 'show', 'showSingle']]);
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +27,7 @@ class AirportConController extends Controller
 
     public function search(Country $request) {
 
-        $airportCon = AirportCon::paginate('6');
+        $airportCon = AirportCon::paginate(15);
 
         $country = Country::where('id', 'Like', '%'. request('country') . '%' )->get();
 
@@ -51,6 +52,8 @@ class AirportConController extends Controller
      */
     public function store(StoreAirportConRequest $request)
     {
+        $fileName = NULL;
+
         $validate = $request->validate([
             'airport_name' => 'required',
             'country_name' => 'required',
@@ -76,7 +79,7 @@ class AirportConController extends Controller
             'longitude' =>request('longitude'),
             'country_id' =>request('country_id'),
             'user_id' =>Auth::id(),
-            'image' => $fileName,
+            'image' =>$fileName,
 
         ]);
         return redirect('/');
@@ -90,10 +93,15 @@ class AirportConController extends Controller
      */
     public function show(AirportCon $airportCon)
     {
-        $country = Country::paginate('6');
-        $airportCon = AirportCon::paginate('6');
+        $country = Country::paginate(6);
+        $airportCon = AirportCon::paginate(6);
 
         return view('pages.airport.show_airport', compact('airportCon', 'country'));
+    }
+
+    public function showSingle(AirportCon $airportCon)
+    {
+        return view('pages.airport.show_single_airport', compact('airportCon'));
     }
 
     /**
@@ -121,13 +129,13 @@ class AirportConController extends Controller
     public function update(UpdateAirportConRequest $request, AirportCon $airportCon)
     {
         if($airportCon->image){
-
+            File::delete(storage_path('app/public/'.$airportCon->image));
         }
-        
+
         if(request()->hasFile('image')){
-            $path = request()->file('image')->store('public/images');
+            $path = $request->file('image')->store('public/images');
             $fileName = str_replace('public/', '', $path);
-            AirportCon::where('id', $airportCon-id)-update(['image' => $fileName]);
+            AirportCon::where('id', $airportCon->id)->update(['image'=>$fileName]);
         }
 
         AirportCon::where('id', $airportCon->id)->update($request->only(['airport_name', 'country_name', 'country_ISO', 'latitude', 'longitude', 'country_id']));

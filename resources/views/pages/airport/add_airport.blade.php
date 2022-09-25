@@ -8,48 +8,52 @@
     </div>
     <div class="container border border-2 bg-dark p-2">
 
-        <form action="/store_airport" method="post">
+        <form action="/store_airport" method="post" enctype="multipart/form-data">
 
-        @csrf
-        @include('_partials.errors')
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Airport Name</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="airport_name">
-            </div>
-            <div class="input-group mb-3">
-                <select id="country" class="form-select" aria-label="Default select example" name="country_name">
-                    <option selected value="" disabled>Country Selection</option>
-                    @foreach ($country as $countries)
-                        <option value="{{ $countries-> country_name }}" data-ISO="{{ $countries-> country_ISO}}" data-ID="{{ $countries-> id }}">{{ $countries -> country_name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="input-group mb-3 d-none">
-                <span class="input-group-text" id="inputGroup-sizing-default">Country ISO</span>
-                <input id="country_ISO" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_ISO" value="">
-            </div>
-
-            <div class="input-group mb-3 d-none">
-                <span class="input-group-text" id="inputGroup-sizing-default">Country ID</span>
-                <input id="country_id"type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_id" value="">
-            </div>
-            <div class="mb-3">
+            @csrf
+            @include('_partials.errors')
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">location Latitude</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="latitude" id="latitude" readonly>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Airport Name</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="airport_name">
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">location Longitude</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="longitude" id="longitude" readonly>
+                    <select id="country" class="form-select" aria-label="Default select example" name="country_name">
+                        <option selected value="" disabled>Country Selection</option>
+                        @foreach ($country as $countries)
+                            <option value="{{ $countries-> country_name }}" data-ISO="{{ $countries-> country_ISO}}" data-ID="{{ $countries-> id }}">{{ $countries -> country_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
-                <div id="map" style="width: 100%; height: 500px;"></div>
-            </div>
+                <div class="mb-3">
+                    <input class="form-control" type="file" id="formFile" name="image">
+                </div>
 
-            <div class="input-group mb-2">
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
+                <div class="input-group mb-3 d-none">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Country ISO</span>
+                    <input id="country_ISO" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_ISO" value="">
+                </div>
+
+                <div class="input-group mb-3 d-none">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Country ID</span>
+                    <input id="country_id"type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_id" value="">
+                </div>
+
+                <div class="mb-3">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="latitude-span">location Latitude</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="latitude-span" name="latitude" id="latitude" readonly>
+                        <span class="input-group-text" id="longitude-span">location Longitude</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="longitude-span" name="longitude" id="longitude" readonly>
+                    </div>
+
+                    <div id="map" style="width: 100%; height: 500px;"></div>
+                </div>
+
+
+                <div class="input-group mb-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
 
         </form>
 

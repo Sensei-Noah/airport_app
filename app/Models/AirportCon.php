@@ -9,7 +9,7 @@ class AirportCon extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['airport_name', 'country_name', 'country_ISO', 'latitude', 'longitude', 'country_id'];
+    protected $fillable = ['airport_name', 'country_name', 'country_ISO', 'latitude', 'longitude', 'country_id', 'user_id', 'image'];
 
     public function Country(){
         return $this->hasMany(Country::class, 'country_id', 'id');

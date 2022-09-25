@@ -37,7 +37,7 @@
 
             <tr>
                 <th scope="row">{{ $airportCons -> id }}</th>
-                <td>{{ $airportCons -> airport_name }}</td>
+                <td><a href="/airport/{{ $airportCons-> id }}">{{ $airportCons -> airport_name }}</a></td>
                 <td>{{ $airportCons -> country_name }}</td>
                 <td>{{ $airportCons -> latitude }} / {{ $airportCons -> longitude }}</td>
                 <td>
@@ -54,6 +54,9 @@
         @endforeach
         </tbody>
     </table>
+    <div class="d-flex justify-content-end md-4 pt-2">
+        {{ $airportCon->links() }}
+    </div>
 </div>
 
 <div class="modal fade" id="deleteConformation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

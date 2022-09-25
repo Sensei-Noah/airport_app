@@ -29,6 +29,7 @@ Route::get('/show_airport/update/{airportCon}', [AirportConController::class, 'e
 Route::post('show_airport/update/{airportCon}', [AirportConController::class, 'update']);
 Route::get('/show_airport/delete/{airportCon}', [AirportConController::class, 'destroy']);
 Route::post('/store_airport', [AirportConController::class, 'store']);
+Route::get('/airport/{airportCon}', [AirportConController::class, 'showSingle']);
 
 Route::get('/show_airline', [AirlineController::class, 'show']);
 Route::get('/add_airline', [AirlineController::class,'create']);
