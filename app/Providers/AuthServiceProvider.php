@@ -25,6 +25,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Gate::define('edit_airport', function($user, $airportCon){
+        //     return $user->id == $airportCon->user_id;
+        // });
+
+        // Gate::define('delete_airport', function($user, $airportCon){
+        //     return $user->id == $airportCon->user_id;
+        // });
     }
 }

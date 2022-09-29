@@ -55,7 +55,7 @@ class AirportConController extends Controller
         $fileName = NULL;
 
         $validate = $request->validate([
-            'airport_name' => 'required',
+            'airport_name' => 'required|max:100',
             'country_name' => 'required',
             'country_ISO' => 'required',
             'latitude' => 'required',
@@ -71,17 +71,22 @@ class AirportConController extends Controller
             $fileName = str_replace('public/', '', $path);
         }
 
-        AirportCon::create([
-            'airport_name' =>request('airport_name'),
-            'country_name' =>request('country_name'),
-            'country_ISO' =>request('country_ISO'),
-            'latitude' =>request('latitude'),
-            'longitude' =>request('longitude'),
-            'country_id' =>request('country_id'),
-            'user_id' =>Auth::id(),
-            'image' =>$fileName,
+        if( Country::where('id', '=', request('country_id') )->exists() ){
+            AirportCon::create([
+                'airport_name' =>request('airport_name'),
+                'country_name' =>request('country_name'),
+                'country_ISO' =>request('country_ISO'),
+                'latitude' =>request('latitude'),
+                'longitude' =>request('longitude'),
+                'country_id' =>request('country_id'),
+                'user_id' =>Auth::id(),
+                'image' =>$fileName,
 
-        ]);
+            ]);
+        }else{
+            return view('pages.denies');
+        }
+
         return redirect('/');
     }
 

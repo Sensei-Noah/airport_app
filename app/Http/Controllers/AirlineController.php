@@ -20,7 +20,9 @@ class AirlineController extends Controller
      */
     public function index()
     {
+        $airline = Airline::paginate('6');
 
+        return view('pages.airline.show_airline', compact('airline'));
     }
 
     /**
@@ -44,19 +46,25 @@ class AirlineController extends Controller
     {
 
         $validate = $request->validate([
-            'airline_name' => 'required',
+            'airline_name' => 'required|max:100',
             'country_name' => 'required',
             'country_ISO' => 'required',
             'country_id' => 'required',
         ]);
 
-        Airline::create([
-            'airline_name' =>request('airline_name'),
-            'country_name' =>request('country_name'),
-            'country_ISO' =>request('country_ISO'),
-            'country_id' =>request('country_id'),
-        ]);
 
+        if( Country::where('id', '=', request('country_id') )->exists() )
+        {
+            Airline::create([
+                'airline_name' =>request('airline_name'),
+                'country_name' =>request('country_name'),
+                'country_ISO' =>request('country_ISO'),
+                'country_id' =>request('country_id'),
+            ]);
+
+        } else{
+            return view('pages.denies');
+        }
 
         return redirect('/show_airline');
     }
@@ -69,9 +77,7 @@ class AirlineController extends Controller
      */
     public function show(Airline $airline)
     {
-        $airline = Airline::paginate('6');
-
-        return view('pages.airline.show_airline', compact('airline'));
+        return view('pages.airline.show_single_airline', compact('airline'));
     }
 
     /**
@@ -82,9 +88,7 @@ class AirlineController extends Controller
      */
     public function edit(Airline $airline)
     {
-        if(Gate::denies('edit_airline', $airline)){
-            return view('pages.denies');
-        }
+
         $country = Country::All();
         return view('pages.airline.edit_airline', compact('airline', 'country'));
     }
@@ -110,9 +114,7 @@ class AirlineController extends Controller
      */
     public function destroy(Airline $airline)
     {
-        if(Gate::denies('delete_airline', $airline)){
-            return view('pages.denies');
-        }
+
         $airline->delete();
 
         return redirect('/show_airline');

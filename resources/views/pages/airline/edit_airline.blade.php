@@ -19,7 +19,12 @@
                 <select id="country" class="form-select" aria-label="Default select example" name="country_name">
                     <option selected value="" disabled>Country Selection</option>
                     @foreach ($country as $countries)
+                        {{-- Adding selected tag for convenience --}}
+                        @if ($countries-> country_name == $airline-> country_name)
+                        <option value="{{ $countries-> country_name }}" data-ISO="{{ $countries-> country_ISO}}" data-ID="{{ $countries-> id }}" selected>{{ $countries -> country_name }}</option>
+                        @else
                         <option value="{{ $countries-> country_name }}" data-ISO="{{ $countries-> country_ISO}}" data-ID="{{ $countries-> id }}">{{ $countries -> country_name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>

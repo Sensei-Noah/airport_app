@@ -21,7 +21,7 @@
 
             <tr>
                 <th scope="row">{{ $airlines -> id }}</th>
-                <td>{{ $airlines -> airline_name }}</td>
+                <td><a href="/show_airline/{{ $airlines->id }}">{{ $airlines -> airline_name }}</a></td>
                 <td>{{ $airlines -> country_name }}</td>
                 <td>
                     @if (Auth::check())

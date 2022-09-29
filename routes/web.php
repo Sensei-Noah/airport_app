@@ -31,12 +31,14 @@ Route::get('/show_airport/delete/{airportCon}', [AirportConController::class, 'd
 Route::post('/store_airport', [AirportConController::class, 'store']);
 Route::get('/airport/{airportCon}', [AirportConController::class, 'showSingle']);
 
-Route::get('/show_airline', [AirlineController::class, 'show']);
+Route::get('/show_airline', [AirlineController::class, 'index']);
 Route::get('/add_airline', [AirlineController::class,'create']);
 Route::get('/show_airline/update/{airline}', [AirlineController::class, 'edit']);
 Route::post('show_airline/update/{airline}', [AirlineController::class, 'update']);
 Route::get('/show_airline/delete/{airline}', [AirlineController::class, 'destroy']);
 Route::post('store_airline', [AirlineController::class, 'store']);
+Route::get('/show_airline/{airline}', [AirlineController::class, 'show']);
+
 
 Route::get('/show_country', [CountryController::class, 'show']);
 Route::get('/add_country', [countryController::class,'create']);
