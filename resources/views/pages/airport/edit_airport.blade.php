@@ -13,7 +13,7 @@
         @include('_partials.errors')
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Airport Name</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="airport_name" value="{{ $airportCon -> airport_name }}">
+                <input required type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="airport_name" value="{{ $airportCon -> airport_name }}">
             </div>
             <div class="input-group mb-3">
                 <select id="country" class="form-select" aria-label="Default select example" name="country_name">
@@ -42,6 +42,7 @@
                 <span class="input-group-text" id="inputGroup-sizing-default">Country ID</span>
                 <input id="country_id"type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="country_id" value="">
             </div>
+
             <div class="mb-3">
 
                 <div class="input-group mb-3">
@@ -95,11 +96,9 @@
         const countryselect = document.getElementById('country');
         const countryIdInput = document.getElementById('country_id');
         const countryISOInput = document.getElementById('country_ISO');
-        if(countryselect.onchange){
-            funkcija();
-        }
 
-        funkcija(){
+        const addAttribute = function(){
+
             let countryID = countryselect.options[countryselect.selectedIndex].getAttribute("data-ID");
             console.log(countryID);
             countryIdInput.setAttribute("value", countryID);
@@ -107,9 +106,12 @@
             let countryISO = countryselect.options[countryselect.selectedIndex].getAttribute("data-ISO");
             console.log(countryISO);
             countryISOInput.setAttribute("value", countryISO);
-        };
+        }
+        addAttribute();
 
-        funkcija();
+        countryselect.onchange = function(){
+            addAttribute();
+        }
 
     </script>
 
