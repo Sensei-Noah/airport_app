@@ -16,6 +16,12 @@
             <a class="nav-link" href="/show_country">Countries</a>
           </li>
 
+          {{-- @if (Auth()::check())
+            <li>
+                <a class="nav-link" href="/show_users">Users</a>
+            </li>
+          @endif --}}
+
         </ul>
       </div>
 
@@ -35,7 +41,7 @@
                             <p class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Welcome, Guest</p>
                             <div class="m-2"> </div>
                             <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Log in</a>
-                            
+
                             <div class="m-2"> </div>
                             /{{-- seperator --}}
                             <div class="m-2"> </div>

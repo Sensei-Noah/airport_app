@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AirportConController;
+use App\Http\Controllers\SignupController;
 use App\Http\Controllers\AirlineController;
 use App\Http\Controllers\CountryController;
-use App\Http\Controllers\SignupController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AirportConController;
+use App\Http\Controllers\Admin\AdminAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +52,21 @@ Route::get('/show_airport/search', [AirportConController::class, 'search']);
 
 Route::get('/show_countryNoAirline', [countryController::class, 'countryNoAirport']);
 Route::get('/show_countryNoAirlineNoAirport', [countryController::class, 'countryNoAirportNoAirport']);
+
+Route::get('/show_users', function(){
+    return view('pages.user.show_users');
+});
+
+Route::group(['prefix' => 'admin', 'namespace'=>'Admin'], function(){
+    Route::get('/login', [AdminAuthController::class, 'getlogin'])->name('adminLogin');
+    Route::post('/login', [AdminAuthController::class, 'postlogin'])->name('adminLoginPost');
+
+    Route::group(['middleware' =>'adminauth'], function() {
+        Route::get('/admin_dash', function() {
+            return view('admin_dash');
+        })->name('adminDashboard');
+    });
+});
 
 
 Auth::routes();
