@@ -18,13 +18,17 @@ class AdminAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::guard('admin')->user()){
-            return $next($request);
-        }
-        if($request->ajax() || $request->wantsJson()){
-            return response('Unauthorized', 401);
-        } else {
-            return redirect(route('adminLogin'));
+        //Admin = 1
+        //user = 0
+        if (Auth::check()) {
+            if(Auth::user()->role == '1'){
+                return $next($request);
+            }else{
+                return redirect('/')->with('message', 'Access Denied');
+            }
+        }else{
+            return redirect('/login')->with('message', 'Login to gain access');
+
         }
     }
 }

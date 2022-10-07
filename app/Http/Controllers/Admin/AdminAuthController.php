@@ -5,31 +5,17 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class AdminAuthController extends Controller
 {
-    public function getLogin(){
-        return view('admin.auth.login');
+    public function index(){
+        $users = User::paginate('6');
+
+        return view('pages.user.show_users', ['users' => $users]);
     }
 
-    public function postLogin(Request $request)
-    {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if(auth()->guard('admin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')])){
-            $user = auth()->guard('admin')->user();
-            if($user->is_admin == 1){
-                return redirect()->route('adminDashboard')-with('success', 'You are logged in successfully');
-            }
-        }else {
-            return back()->with('error', 'Invalid email and password.');
-        }
-    }
-
-    public function adminLogout(Request $request)
+    public function adminLogout()
     {
         auth()->guard('admin')->logout();
         Session::flush();

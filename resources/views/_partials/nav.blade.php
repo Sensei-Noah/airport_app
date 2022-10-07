@@ -15,13 +15,14 @@
           <li>
             <a class="nav-link" href="/show_country">Countries</a>
           </li>
-
-          {{-- @if (Auth()::check())
-            <li>
-                <a class="nav-link" href="/show_users">Users</a>
-            </li>
-          @endif --}}
-
+          {{-- Admin = 1 ; user = 0 --}}
+          @if (Auth::check())
+            @if (Auth::user()->role == '1')
+                <li>
+                    <a class="nav-link" href="/admin/show_users">Users</a>
+                </li>
+            @endif
+          @endif
         </ul>
       </div>
 
@@ -33,7 +34,14 @@
                         <div class="d-flex ">
                             <p class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Welcome, {{ Auth()-> user() -> name }}</p>
                             <div class="m-2"> </div>
-                            <a href="{{ url('/logout') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Logout</a>
+                            {{-- Admin = 1 ; user = 0 --}}
+                            @if (Auth::check())
+                                @if (Auth::user()->role == '1')
+                                    <a href="{{ url('/adminLogout') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Logout</a>
+                                @else
+                                    <a href="{{ url('/logout') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Logout</a>
+                                @endif
+                            @endif
                         </div>
                     @else
                         <div class="d-flex">

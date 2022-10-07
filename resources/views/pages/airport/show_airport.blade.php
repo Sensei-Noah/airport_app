@@ -39,7 +39,6 @@
                         <td>{{ $airportCons->country_name }}</td>
                         <td>{{ $airportCons->latitude }} / {{ $airportCons->longitude }}</td>
                         <td>
-                            {{-- <button type="submit" class="btn btn-success mt-2" name="airport_show_map" value="{{ $airportCons -> latitude }},{{ $airportCons-> longitude }}">Show Map</button> --}}
                             @if (Auth::check())
                                 <a type="button" class="btn btn-primary mt-2"
                                     href="/show_airport/update/{{ $airportCons->id }}">Edit</a>
