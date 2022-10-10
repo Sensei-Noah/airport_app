@@ -6,6 +6,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Role</th>
             </tr>
         </thead>
         <tbody>
@@ -13,6 +14,11 @@
                 <tr>
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
+                    @if ($user->role == 1)
+                        <td>Admin</td>
+                    @else
+                        <td>Guest</td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
