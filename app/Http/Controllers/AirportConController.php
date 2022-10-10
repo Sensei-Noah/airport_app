@@ -55,7 +55,7 @@ class AirportConController extends Controller
         $fileName = NULL;
 
         $validate = $request->validate([
-            'airport_name' => 'required|max:100',
+            'airport_name' => 'required|min:4|max:55',
             'country_name' => 'required',
             'country_ISO' => 'required',
             'latitude' => 'required',

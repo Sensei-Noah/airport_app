@@ -55,7 +55,7 @@ class CountryController extends Controller
     public function store(StoreCountryRequest $request)
     {
         $validate = $request->validate([
-            'country_name' => 'required|unique:countries|max:100',
+            'country_name' => 'required|unique:countries|min:4|max:55',
             'country_ISO' => 'required|unique:countries|min:3|max:3',
         ]);
 
