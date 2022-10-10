@@ -29,34 +29,46 @@
         <div class="">
 
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block text-light fs-5">
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block text-light fs-5 dropdown">
                     @auth
                         <div class="d-flex ">
-                            <p class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Welcome, {{ Auth()-> user() -> name }}</p>
-                            <div class="m-2"> </div>
+                            <a class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none dropdown-toggle btn btn-secondary p-2 m-1" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth()-> user() -> name }}
+                            </a>
                             {{-- Admin = 1 ; user = 0 --}}
-                            @if (Auth::check())
-                                @if (Auth::user()->role == '1')
-                                    <a href="{{ url('/adminLogout') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Logout</a>
-                                @else
-                                    <a href="{{ url('/logout') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Logout</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                @if (Auth::check())
+                                    @if (Auth::user()->role == '1')
+                                        <li>
+                                            <a href="{{ url('/admin/adminLogout') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none dropdown-item">Logout</a>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a href="{{ url('/logout') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none dropdown-item">Logout</a>
+                                        </li>
+                                    @endif
                                 @endif
-                            @endif
+                            </ul>
                         </div>
                     @else
                         <div class="d-flex">
 
-                            <p class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Welcome, Guest</p>
-                            <div class="m-2"> </div>
-                            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Log in</a>
+                            <a class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none dropdown-toggle btn btn-secondary p-2 m-1" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                Guest
+                            </a>
 
-                            <div class="m-2"> </div>
-                            /{{-- seperator --}}
-                            <div class="m-2"> </div>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 text-decoration-none">Register</a>
-                            @endif
+                                <li>
+                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 text-decoration-none dropdown-item">Log in</a>
+                                </li>
+
+                                @if (Route::has('register'))
+                                <li>
+                                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 text-decoration-none dropdown-item">Register</a>
+                                </li>
+                                @endif
+                            </ul>
                         </div>
                     @endauth
                 </div>
